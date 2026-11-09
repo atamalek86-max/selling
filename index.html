@@ -9,9 +9,7 @@
     
     <style>
         :root {
-            /* رنگ پس زمینه دقیقا مطابق پس زمینه لوگو */
             --bg-color: #083a23; 
-            /* رنگ کارت ها کمی روشن تر برای تفکیک بهتر */
             --card-bg: #0b4a2e; 
             --gold: #d4af37;
             --gold-light: #f3e5ab;
@@ -28,8 +26,12 @@
             font-family: 'Vazirmatn', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--bg-color); /* پس زمینه یکدست */
+            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             min-height: 100vh;
@@ -55,7 +57,7 @@
             filter: drop-shadow(0 0 5px rgba(0,0,0,0.2)); 
         }
 
-        /* --- بخش معرفی و تصویر موشک (تغییر یافته: چیدمان عمودی در همه دستگاه‌ها) --- */
+        /* --- بخش معرفی و تصویر موشک --- */
         .hero-section {
             display: flex;
             flex-direction: column;
@@ -94,7 +96,7 @@
             object-fit: cover;
         }
 
-        /* --- جدول قیمت و خدمات (کاتالوگ) --- */
+        /* --- جدول قیمت و خدمات --- */
         .pricing-section {
             margin: 50px 0;
             background: var(--card-bg);
@@ -103,7 +105,7 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 5px 20px rgba(0,0,0,0.4);
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch; /* اسکرول نرم در موبایل */
+            -webkit-overflow-scrolling: touch;
         }
 
         .pricing-table {
@@ -136,17 +138,8 @@
             font-weight: 900;
         }
 
-        .check {
-            color: var(--success);
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
-
-        .cross {
-            color: var(--danger);
-            font-size: 1.4rem;
-            font-weight: bold;
-        }
+        .check { color: var(--success); font-size: 1.4rem; font-weight: bold; }
+        .cross { color: var(--danger); font-size: 1.4rem; font-weight: bold; }
 
         .price-row td {
             font-weight: bold;
@@ -203,6 +196,7 @@
             padding: 5px 15px;
             border-radius: 5px;
             user-select: all;
+            margin-bottom: 10px;
         }
 
         /* دکمه‌های پرداخت */
@@ -211,7 +205,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding: 15px;
+            padding: 12px 15px;
             margin-top: 15px;
             border-radius: 8px;
             text-decoration: none;
@@ -220,28 +214,36 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            gap: 10px; /* فاصله بین لوگو و متن */
         }
 
-        .btn-digipay {
-            background: linear-gradient(135deg, #0055ff 0%, #0033aa 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(0, 85, 255, 0.3);
+        /* لوگوی داخل دکمه‌ها */
+        .btn-icon {
+            height: 35px;
+            width: auto;
+            border-radius: 4px;
         }
 
-        .btn-digipay:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.5);
+        /* استایل دیجی پی (آبی تیره) */
+        .btn-digipay { 
+            background: #0f3df2; /* رنگ آبی مطابق لوگو */
+            color: white; 
+            box-shadow: 0 4px 15px rgba(15, 61, 242, 0.3); 
         }
-
-        .btn-snappay {
-            background: linear-gradient(135deg, #ff0055 0%, #aa0033 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
+        .btn-digipay:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(15, 61, 242, 0.5); 
         }
-
-        .btn-snappay:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 0, 85, 0.5);
+        
+        /* استایل اسنپ پی (آبی روشن) */
+        .btn-snappay { 
+            background: #009dff; /* رنگ آبی روشن مطابق لوگو */
+            color: white; 
+            box-shadow: 0 4px 15px rgba(0, 157, 255, 0.3); 
+        }
+        .btn-snappay:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 6px 20px rgba(0, 157, 255, 0.5); 
         }
 
         /* هشدارها و نکات */
@@ -255,24 +257,55 @@
             font-size: 0.95rem;
         }
 
-        .alert-box ul {
-            list-style-type: none;
-            padding-right: 10px;
+        .alert-box ul { list-style-type: none; padding-right: 10px; }
+        .alert-box li { margin-bottom: 10px; position: relative; padding-right: 20px; }
+        .alert-box li::before { content: '⚠️'; position: absolute; right: 0; top: 2px; }
+
+        /* --- بخش فعال‌سازی دوره --- */
+        .activation-box {
+            background: #041f12;
+            border: 2px dashed #ff3366;
+            border-radius: 15px;
+            padding: 30px 20px;
+            margin-top: 30px;
+            text-align: center;
         }
 
-        .alert-box li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-right: 20px;
+        .activation-box h3 {
+            color: #ff3366;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        .alert-box li::before {
-            content: '⚠️';
-            position: absolute;
-            right: 0;
-            top: 2px;
+        .activation-box p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
         }
 
+        .ussd-code {
+            display: inline-block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            background: #000;
+            padding: 15px 35px;
+            border-radius: 10px;
+            letter-spacing: 3px;
+            direction: ltr;
+            border: 2px solid #ff3366;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.2);
+        }
+
+        .ussd-code:hover {
+            background: #ff3366;
+            color: white;
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.5);
+        }
+
+        /* پشتیبانی */
         .support-box {
             text-align: center;
             margin-top: 30px;
@@ -280,109 +313,63 @@
             border-top: 1px solid #1a5c3e;
         }
 
-        .support-box p {
-            margin-bottom: 10px;
-            color: var(--text-muted);
-        }
+        .support-box p { margin-bottom: 15px; color: var(--text-muted); }
 
         .eitaa-btn {
-            display: inline-block;
-            background-color: #f78c00;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f27b00; /* رنگ نارنجی ایتا */
             color: white;
             padding: 10px 25px;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1rem;
             transition: background 0.3s;
         }
 
-        .eitaa-btn:hover {
-            background-color: #d17500;
+        .eitaa-btn:hover { background-color: #cc6800; }
+
+        .eitaa-icon {
+            height: 30px;
+            width: auto;
+            border-radius: 5px;
         }
 
-        /* --- انیمیشن‌ها --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ========================================= */
-        /* --- تنظیمات مخصوص دسکتاپ --- */
-        /* ========================================= */
+        /* --- ریسپانسیو --- */
         @media (min-width: 768px) {
-            /* بخش تصویر و متن حالا در دسکتاپ هم زیر هم قرار می‌گیرند، پس استایل ردیفی حذف شد */
-            
-            .payment-methods {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-            }
-            .payment-card.full-width {
-                grid-column: span 2;
-            }
+            .payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .payment-card.full-width { grid-column: span 2; }
         }
 
-        /* ========================================= */
-        /* --- تنظیمات مخصوص موبایل --- */
-        /* ========================================= */
         @media (max-width: 767px) {
-            .container {
-                padding: 10px;
-            }
-            .logo-img {
-                max-width: 220px;
-            }
-            .hero-text h1 {
-                font-size: 1.6rem;
-                margin-top: 15px;
-            }
-            .hero-text p {
-                font-size: 1rem;
-            }
-            .pricing-section {
-                padding: 10px;
-                margin: 30px 0;
-            }
-            .pricing-table {
-                min-width: 550px;
-            }
-            .pricing-table th, .pricing-table td {
-                padding: 10px 5px;
-                font-size: 0.85rem;
-            }
-            .price-row td {
-                font-size: 0.9rem;
-            }
-            .payment-section {
-                padding: 15px;
-            }
-            .section-title {
-                font-size: 1.4rem;
-            }
-            .payment-card {
-                padding: 15px;
-            }
-            .payment-card h3 {
-                font-size: 1.1rem;
-            }
-            .card-number {
-                font-size: 1.1rem;
-                padding: 8px 10px;
-                width: 100%;
-                text-align: center;
-            }
-            .btn {
-                padding: 12px;
-                font-size: 1rem;
-            }
-            .alert-box {
-                padding: 12px;
-                font-size: 0.85rem;
-            }
-            .alert-box li {
-                padding-right: 15px;
-                margin-bottom: 8px;
-            }
+            .container { padding: 10px; }
+            .logo-img { max-width: 220px; }
+            .hero-text h1 { font-size: 1.6rem; margin-top: 15px; }
+            .hero-text p { font-size: 1rem; }
+            .pricing-section { padding: 10px; margin: 30px 0; }
+            .pricing-table { min-width: 550px; }
+            .pricing-table th, .pricing-table td { padding: 10px 5px; font-size: 0.85rem; }
+            .price-row td { font-size: 0.9rem; }
+            .payment-section { padding: 15px; }
+            .section-title { font-size: 1.4rem; }
+            .payment-card { padding: 15px; }
+            .payment-card h3 { font-size: 1.1rem; }
+            .card-number { font-size: 1.1rem; padding: 8px 10px; width: 100%; text-align: center; }
+            .btn { padding: 12px; font-size: 1rem; }
+            .btn-icon { height: 28px; }
+            .alert-box { padding: 12px; font-size: 0.85rem; }
+            .alert-box li { padding-right: 15px; margin-bottom: 8px; }
+            .activation-box { padding: 20px 10px; }
+            .ussd-code { font-size: 1.6rem; padding: 12px 20px; }
+            .eitaa-btn { font-size: 1rem; padding: 10px 15px; }
+            .eitaa-icon { height: 25px; }
         }
     </style>
 </head>
@@ -390,24 +377,20 @@
 
     <div class="container">
         
-        <!-- هدر و لوگو -->
         <header>
             <img src="logo.png" alt="آکادمی هوش و یادگیری آکسون" class="logo-img">
         </header>
 
-        <!-- بخش معرفی و تصویر (متن بالا، تصویر پایین در وسط) -->
         <section class="hero-section">
             <div class="hero-text">
                 <h1>دوره آموزشی جهش یادگیری</h1>
                 <p>یادگیری عمیق، حافظه قدرتمند، تمرکز پایدار، نتایج ماندگار</p>
             </div>
             <div class="hero-image">
-                <!-- اسکریپت پایین صفحه باعث می‌شود اگر فایل rocket.jpg در پوشه بود، جایگزین عکس پیش‌فرض شود -->
                 <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&w=800&q=80" alt="جهش یادگیری" id="rocket-img">
             </div>
         </section>
 
-        <!-- جدول تعرفه‌ها (کاتالوگ متنی) -->
         <section class="pricing-section">
             <table class="pricing-table">
                 <thead>
@@ -419,53 +402,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>ارزیابی و تشخیص</td>
-                        <td><span class="check">✔</span></td>
-                        <td><span class="check">✔</span></td>
-                        <td class="col-gold"><span class="check">✔</span></td>
-                    </tr>
-                    <tr>
-                        <td>دوره ۱۰ جلسه ای ویدئویی</td>
-                        <td><span class="check">✔</span></td>
-                        <td><span class="check">✔</span></td>
-                        <td class="col-gold"><span class="check">✔</span></td>
-                    </tr>
-                    <tr>
-                        <td>دسترسی به دوره</td>
-                        <td>۱۰۰ روز</td>
-                        <td>۱۰۰ روز</td>
-                        <td class="col-gold">مادام العمر</td>
-                    </tr>
-                    <tr>
-                        <td>کاربرگ های تخصصی دوره</td>
-                        <td><span class="cross">✘</span></td>
-                        <td><span class="check">✔</span></td>
-                        <td class="col-gold"><span class="check">✔</span></td>
-                    </tr>
-                    <tr>
-                        <td>همیار آموزش (منظور پیگیری و تسهیل انجام تمرینات)</td>
-                        <td><span class="cross">✘</span></td>
-                        <td><span class="check">✔</span></td>
-                        <td class="col-gold"><span class="check">✔</span></td>
-                    </tr>
-                    <tr>
-                        <td>یک جلسه آنلاین با متخصص (بررسی تخصصی)</td>
-                        <td><span class="cross">✘</span></td>
-                        <td><span class="cross">✘</span></td>
-                        <td class="col-gold"><span class="check">✔</span></td>
-                    </tr>
-                    <tr class="price-row">
-                        <td>قیمت</td>
-                        <td>۱,۹۰۰,۰۰۰ تومان</td>
-                        <td>۴,۹۰۰,۰۰۰ تومان</td>
-                        <td class="col-gold">۹,۸۰۰,۰۰۰ تومان</td>
-                    </tr>
+                    <tr><td>ارزیابی و تشخیص</td><td><span class="check">✔</span></td><td><span class="check">✔</span></td><td class="col-gold"><span class="check">✔</span></td></tr>
+                    <tr><td>دوره ۱۰ جلسه ای ویدئویی</td><td><span class="check">✔</span></td><td><span class="check">✔</span></td><td class="col-gold"><span class="check">✔</span></td></tr>
+                    <tr><td>دسترسی به دوره</td><td>۱۰۰ روز</td><td>۱۰۰ روز</td><td class="col-gold">مادام العمر</td></tr>
+                    <tr><td>کاربرگ های تخصصی دوره</td><td><span class="cross">✘</span></td><td><span class="check">✔</span></td><td class="col-gold"><span class="check">✔</span></td></tr>
+                    <tr><td>همیار آموزش (منظور پیگیری و تسهیل انجام تمرینات)</td><td><span class="cross">✘</span></td><td><span class="check">✔</span></td><td class="col-gold"><span class="check">✔</span></td></tr>
+                    <tr><td>یک جلسه آنلاین با متخصص (بررسی تخصصی)</td><td><span class="cross">✘</span></td><td><span class="cross">✘</span></td><td class="col-gold"><span class="check">✔</span></td></tr>
+                    <tr class="price-row"><td>قیمت</td><td>۱,۹۰۰,۰۰۰ تومان</td><td>۴,۹۰۰,۰۰۰ تومان</td><td class="col-gold">۹,۸۰۰,۰۰۰ تومان</td></tr>
                 </tbody>
             </table>
         </section>
 
-        <!-- بخش روش‌های پرداخت -->
         <section class="payment-section">
             <h2 class="section-title">روش‌های پرداخت</h2>
             
@@ -475,27 +422,28 @@
                     <h3>۱. واریز به کارت</h3>
                     <p>لطفاً مبلغ مربوطه را به کارت زیر واریز نمایید:</p>
                     <div class="card-number">6063-7311-2744-8240</div>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">بنام: یحیی میان بندی</p>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem;">بنام: یحیی میان بندی</p>
                 </div>
 
-                <!-- دیجی پی -->
+                <!-- دیجی پی (آبی تیره) -->
                 <div class="payment-card">
                     <h3>۲. پرداخت اقساطی (دیجی پی)</h3>
                     <a href="https://app.mydigipay.com/hub?rt=offline-payment/static?trackingCode=A00myrz0NtF6evRzxuc5" target="_blank" class="btn btn-digipay">
+                        <img src="digipay-logo.png" alt="دیجی پی" class="btn-icon">
                         پرداخت از طریق دیجی پی
                     </a>
                 </div>
 
-                <!-- اسنپ پی -->
+                <!-- اسنپ پی (آبی روشن) -->
                 <div class="payment-card">
                     <h3>۳. پرداخت اقساطی (اسنپ پی)</h3>
                     <a href="https://social.snapppay.site/2x795" target="_blank" class="btn btn-snappay">
+                        <img src="snapppay-logo.png" alt="اسنپ پی" class="btn-icon">
                         پرداخت از طریق اسنپ پی
                     </a>
                 </div>
             </div>
 
-            <!-- نکات مهم -->
             <div class="alert-box">
                 <ul>
                     <li>حتماً قبل از استفاده از لینک دیجی پی یا اسنپ پی، از داشتن اعتبار یا دریافت آن در برنامه مربوطه اطمینان حاصل کنید.</li>
@@ -503,26 +451,39 @@
                 </ul>
             </div>
 
-            <!-- پشتیبانی -->
+            <!-- ========================================== -->
+            <!-- بخش فعال‌سازی دوره (تغییر یافته) -->
+            <!-- ========================================== -->
+            <div class="activation-box">
+                <h3>فعال‌سازی دوره پس از پرداخت</h3>
+                <p>برای فعال‌سازی اشتراک خود، لطفاً کد دستوری زیر را شماره‌گیری کنید:</p>
+                
+                <!-- لینک تماس مستقیم با کد دستوری -->
+                <a href="tel:*6655*88388*4%23" class="ussd-code">*6655*88388*4#</a>
+                
+                <p style="font-size: 0.9rem; margin-top: 15px; color: var(--gold-light);">
+                    (با کلیک روی کد بالا، صفحه شماره‌گیری گوشی شما باز می‌شود)
+                </p>
+            </div>
+
+            <!-- پشتیبانی با لوگوی ایتا -->
             <div class="support-box">
-                <p>اگر در هرجای فرآیند ثبت‌نام یا پرداخت به مشکل برخورد کردید، از طریق پیام‌رسان ایتا با ما در ارتباط باشید:</p>
-                <!-- لینک دکمه ایتا به آدرس جدید تغییر کرد -->
-                <a href="https://web.eitaa.com/#@Eptima51" target="_blank" class="eitaa-btn">پیام به پشتیبانی در ایتا</a>
+                <p>در صورت مشکل در فرآیند ثبت‌نام یا پرداخت، از طریق پیام‌رسان ایتا با پشتیبانی در ارتباط باشید:</p>
+                <a href="https://web.eitaa.com/#@Eptima51" target="_blank" class="eitaa-btn">
+                    <img src="eitaa-logo.png" alt="ایتا" class="eitaa-icon">
+                    ارتباط با پشتیبانی در ایتا
+                </a>
             </div>
 
         </section>
-
     </div>
 
     <script>
-        // اسکریپت برای لود شدن عکس موشک شما در صورت وجود فایل rocket.jpg
         window.addEventListener('DOMContentLoaded', () => {
             const img = document.getElementById('rocket-img');
             const localImg = new Image();
             localImg.src = 'rocket.jpg'; 
-            localImg.onload = () => {
-                img.src = 'rocket.jpg'; 
-            };
+            localImg.onload = () => { img.src = 'rocket.jpg'; };
         });
     </script>
 </body>
